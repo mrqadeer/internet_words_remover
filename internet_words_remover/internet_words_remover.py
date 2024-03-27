@@ -33,6 +33,9 @@ def words_remover(text:str,is_token:bool=False):
         
         
     internet_words_dict = {
+    'PLZ':'please',
+    'PL':'please',
+    'WTH':'hho the hell',
     'GM': 'good morning',
     'GN': 'good night',
     'LOL': 'laughing out loud, laugh out loud',
