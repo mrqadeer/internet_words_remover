@@ -55,7 +55,8 @@ df['Message'].apply(words_remover,is_token=True)
 ```
 
 #### Catch me on
-[Github](https://github.com/mrqadeer)
+[Github](https://github.com/mrqadeer) <br>
 [LinkedIn](https://www.linkedin.com/in/mr-qadeer-3499a4205/)
 #### Thanks
 ##### Keep Learning and Exploring!
+##### License: [MIT](https://mit-license.org/)
