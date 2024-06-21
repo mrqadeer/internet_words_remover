@@ -148,7 +148,7 @@
 
 
 
-name: Publish Python Package text-prettifier to PyPI 
+name: Upload Python Package | Internet words Remover
 
 on: 
   push:
@@ -200,38 +200,38 @@ jobs:
         user: __token__
         password: ${{ secrets.internet_word }}
 
-  github-release:
-    name: Sign the Python 🐍 distribution 📦 with Sigstore
-      and upload them to GitHub Release
-    needs: publish-to-pypi
-    runs-on: ubuntu-latest
+  # github-release:
+  #   name: Sign the Python 🐍 distribution 📦 with Sigstore
+  #     and upload them to GitHub Release
+  #   needs: publish-to-pypi
+  #   runs-on: ubuntu-latest
 
-    permissions:
-      contents: write  # IMPORTANT: mandatory for making GitHub Releases
-      id-token: write  # IMPORTANT: mandatory for sigstore
+  #   permissions:
+  #     contents: write  # IMPORTANT: mandatory for making GitHub Releases
+  #     id-token: write  # IMPORTANT: mandatory for sigstore
 
-    steps:
-    - name: Download all the dists
-      uses: actions/download-artifact@v3
-      with:
-        name: python-package-distributions
-        path: dist/
-    - name: Install Sigstore dependencies
-      run: |
-        python3 -m pip install securesystemslib  # Specify a compatible version
-    - name: Sign the dists with Sigstore
-      uses: sigstore/gh-action-sigstore-python@v1.2.3
-      with:
-        inputs: |
-          ./dist/*.tar.gz
-          ./dist/*.whl
-    - name: Create GitHub Release
-      env:
-        GITHUB_TOKEN: ${{ secrets.token }}
-      run: |
-        gh release create '${{ github.ref_name }}' --repo '${{ github.repository }}' --notes ""
-    - name: Upload artifact signatures to GitHub Release
-      env:
-        GITHUB_TOKEN: ${{ secrets.token }}
-      run: |
-        gh release upload '${{ github.ref_name }}' dist/** --repo '${{ github.repository }}'
+  #   steps:
+  #   - name: Download all the dists
+  #     uses: actions/download-artifact@v3
+  #     with:
+  #       name: python-package-distributions
+  #       path: dist/
+  #   - name: Install Sigstore dependencies
+  #     run: |
+  #       python3 -m pip install securesystemslib  # Specify a compatible version
+  #   - name: Sign the dists with Sigstore
+  #     uses: sigstore/gh-action-sigstore-python@v1.2.3
+  #     with:
+  #       inputs: |
+  #         ./dist/*.tar.gz
+  #         ./dist/*.whl
+  #   - name: Create GitHub Release
+  #     env:
+  #       GITHUB_TOKEN: ${{ secrets.token }}
+  #     run: |
+  #       gh release create '${{ github.ref_name }}' --repo '${{ github.repository }}' --notes ""
+  #   - name: Upload artifact signatures to GitHub Release
+  #     env:
+  #       GITHUB_TOKEN: ${{ secrets.token }}
+  #     run: |
+  #       gh release upload '${{ github.ref_name }}' dist/** --repo '${{ github.repository }}'

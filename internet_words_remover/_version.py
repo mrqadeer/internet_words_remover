@@ -5,8 +5,8 @@ version_json = '''
  "date": "2024-05-02T00:00:00-0000",
  "dirty": false,
  "error": null,
- "full-revisionid": "d39af7d9bec3888ba4036f200bd45f8e8457b53f",
- "version": "3.1.2"
+ "full-revisionid": "e583dbb6b404081dfdfab1ab566c626928f68f14",
+ "version": "3.1.3"
 }
 '''  # END VERSION_JSON
 
